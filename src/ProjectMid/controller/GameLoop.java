@@ -1,9 +1,8 @@
 package ProjectMid.controller;
 import ProjectMid.model.Character;
 import ProjectMid.view.Platform;
-import javafx.scene.image.ImageView;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 //Imports are omitted
 public class GameLoop implements Runnable {
@@ -11,7 +10,6 @@ public class GameLoop implements Runnable {
     private int frameRate;
     private float interval;
     private boolean running;
-
     public GameLoop(Platform platform) {
         this.platform = platform;
         //frameRate = 60;
@@ -19,50 +17,36 @@ public class GameLoop implements Runnable {
         interval = 1000.0f / frameRate;
         running = true;
     }
-    private void update(Character character) {
-        if (platform.getKeys().isPressed(character.getLeftKey())) {
-            character.setScaleX(-1);
-            character.moveLeft();
-        }
+    private void update(ArrayList<Character> characterList) {
+        for (Character character : characterList ) {
+            if (platform.getKeys().isPressed(character.getLeftKey())) {
+                if(character.getSelectPlayer() == 'A'){
+                    character.setScaleX(-1);
+                }
+                character.moveLeft();
+            }
 
-        if (platform.getKeys().isPressed(character.getRightKey())) {
-            character.setScaleX(1);
-            character.moveRight();
-        }
+            if (platform.getKeys().isPressed(character.getRightKey())) {
+                if(character.getSelectPlayer() == 'A'){
+                    character.setScaleX(1);
+                }
+                character.moveRight();
+            }
 
-        if (!platform.getKeys().isPressed(character.getLeftKey()) && !platform.getKeys().isPressed(character.getRightKey()) ) {
-            character.stop();
-        }
+            if (!platform.getKeys().isPressed(character.getLeftKey()) && !platform.getKeys().isPressed(character.getRightKey())) {
+                character.stop();
+            }
 
-        if (platform.getKeys().isPressed(character.getLeftKey()) || platform.getKeys().isPressed(character.getRightKey())) {
-            character.getImageView().tick();
-        }
-
-        if (platform.getKeys().isPressed(character.getUpKey())) {
-            character.jump();
-        }
-    }
-
-    private void updateObj(GenObstruction obj) {
-        if (platform.getKeys().isPressed(obj.getLeftKey())) {
-            obj.moveLeft();
-        }
-
-        if (platform.getKeys().isPressed(obj.getRightKey())) {
-            obj.moveRight();
-        }
-
-        if (!platform.getKeys().isPressed(obj.getLeftKey()) && !platform.getKeys().isPressed(obj.getRightKey()) ) {
-            obj.stop();
+            if (platform.getKeys().isPressed(character.getUpKey())) {
+                character.jump();
+            }
         }
     }
-
     @Override
     public void run() {
         while (running) {
             float time = System.currentTimeMillis();
-            update(platform.getCharacter());
-            updateObj(platform.getObstruction());
+            update(platform.getCharacterList());
             time = System.currentTimeMillis() - time;
             if (time < interval) {
                 try {

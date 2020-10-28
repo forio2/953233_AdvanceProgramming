@@ -1,7 +1,8 @@
 package ProjectMid.model;
 
-import ProjectMid.controller.GenObstruction;
 import ProjectMid.view.Platform;
+
+import java.util.ArrayList;
 
 public class DrawingLoop implements Runnable {
     private Platform platform;
@@ -14,32 +15,42 @@ public class DrawingLoop implements Runnable {
         interval = 1000.0f / frameRate; // 1000 ms = 1 second
         running = true;
     }
-    private void checkDrawCollisions(Character character) {
-        character.checkReachHighest();
-        character.checkReachFloor();
+    private void checkDrawCollisions(ArrayList<Character> characterList) {
+        for (Character character : characterList ) {
+            if(character.getSelectPlayer() == 'A'){
+                character.checkReachGameWall();
+                character.checkReachHighest();
+                character.checkReachFloor();
+            }
+            else {
+                character.checkReachGameWallObj();
+                character.checkReachHighest();
+                character.checkReachFloor();
+            }
+        }
+        for (Character cA : characterList) {
+            for (Character cB : characterList) {
+                if( cA != cB) {
+                    if (cA.getBoundsInParent().intersects(cB.getBoundsInParent())) {
+                        cA.collided(cB);
+                        cB.collided(cA);
+                        return;
+                    } }
+            } }
     }
-
-    private void checkDrawCollisionsObj(GenObstruction obj) {
-        obj.checkReachGameWall();
-        obj.checkReachHighest();
-        obj.checkReachFloor();
-    }
-    private void paint(Character character) {
-        character.repaint();
-    }
-
-    private void paintObj(GenObstruction obj) {
-        obj.repaint();
+    private void paint(ArrayList<Character> characterList) {
+        for (Character character : characterList ) {
+            character.repaint();
+        }
     }
 
     @Override
     public void run() {
         while (running) {
             float time = System.currentTimeMillis();
-            checkDrawCollisions(platform.getCharacter());
-            paint(platform.getCharacter());
-            checkDrawCollisionsObj(platform.getObstruction());
-            paintObj(platform.getObstruction());
+            checkDrawCollisions(platform.getCharacterList());
+            paint(platform.getCharacterList());
+
             time = System.currentTimeMillis() - time;
             if (time < interval) {
                 try {
