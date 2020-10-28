@@ -220,4 +220,30 @@ public class Character extends Pane {
     public int getScore() {
         return score;
     }
+
+    public void isOnGround(){
+        y = Platform.GROUND;
+        checkReachFloor();
+    }
+
+    public boolean getCanJump(){
+        return canJump;
+    }
+
+    public void Wall(){
+        this.x = 0;
+    }
+
+    public boolean stomped(Character c) {
+        boolean test;
+        test = y < c.getY() && Math.abs(y - c.getY()) <= CHARACTER_HEIGHT + 1;
+        repaint();
+        try {
+            c.collapsed();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        c.respawn();
+        return test;
+    }
 }
