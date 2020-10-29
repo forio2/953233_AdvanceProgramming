@@ -1,17 +1,18 @@
 package ProjectMid.Item;
 
 public class listCharacter extends BasedCharacter  {
-    
-    private int speed;
-
-    public listCharacter(String name, int speed, String imgpath) {
+    public listCharacter(String name, String url, String imgpath) {
         this.name = name;
         this.imgpath = imgpath;
-        this.speed = speed;
+        this.url = url;
     }
 
     public String getImagepath() {
         return imgpath;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     @Override

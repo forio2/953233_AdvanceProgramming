@@ -1,5 +1,6 @@
 package ProjectMid.view;
 
+import ProjectMid.controller.AllCustomHandler;
 import ProjectMid.model.Character;
 import ProjectMid.model.Keys;
 import javafx.scene.image.Image;
@@ -18,16 +19,18 @@ public class Platform extends Pane {
     private ArrayList<Character> characterList;
     private Keys keys;
     private static TopPane topPane;
+    protected AllCustomHandler background;
 
     public Platform() {
         characterList = new ArrayList<>();
         keys = new Keys();
         topPane = new TopPane();
-        platformImg = new Image(getClass().getResourceAsStream("/ProjectMid/assets/Background.png"));
+        background = new AllCustomHandler();
+        System.out.println(background.getBackground());
+        platformImg = new Image(getClass().getResourceAsStream(background.getBackground()));
         ImageView backgroundImg = new ImageView(platformImg);
         backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
-        //character = new Character(30, 30,KeyCode.A,KeyCode.D,KeyCode.W);
         characterList.add(new Character(30, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/MarioSheet.png", 16, 32, 'A'));
         characterList.add(new Character(Platform.WIDTH, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/wood.png", 64, 64, 'B'));
         getChildren().addAll(backgroundImg, topPane);

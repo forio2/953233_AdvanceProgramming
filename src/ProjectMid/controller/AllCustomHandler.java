@@ -1,5 +1,8 @@
 package ProjectMid.controller;
 
+import Chapter1.controller.Launcher;
+import Chapter1.model.Item.Armor;
+import Chapter1.model.Item.Weapon;
 import ProjectMid.Item.BasedCharacter;
 import ProjectMid.Item.listCharacter;
 import ProjectMid.model.Select;
@@ -16,15 +19,17 @@ import java.util.ArrayList;
 
 
 public class AllCustomHandler {
+    public static String bg = "/ProjectMid/assets/Background.png";
+    static boolean dragCompleted;
 
     public static class Unequip implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
+            BasedCharacter equip = Select.getMainCharacter();
             if (Select.getEquippedArmor() != null) {
                 Select.setEquippedArmor(null);
                 Select.setAllEquipments(GenItemList.setUpIList());
             }
-
             Select.refreshPane();
         }
     }
@@ -45,7 +50,7 @@ public class AllCustomHandler {
     }
 
     public static void onDragDropped(DragEvent event, Label lbl, StackPane imgGroup) {
-        boolean dragCompleted = false;
+        dragCompleted = false;
         Dragboard dragboard = event.getDragboard();
         ArrayList<BasedCharacter> allEquipments = Select.getBasedCharacter();
         if (dragboard.hasContent(BasedCharacter.DATA_FORMAT)) {
@@ -59,7 +64,6 @@ public class AllCustomHandler {
                 Select.setEquippedArmor((listCharacter) retrievedEquipment);
 
             }
-
             Select.setAllEquipments(allEquipments);
             Select.refreshPane();
             ImageView imgView = new ImageView();
@@ -73,6 +77,10 @@ public class AllCustomHandler {
             dragCompleted = true;
         }
         event.setDropCompleted(dragCompleted);
+    }
+
+    public String getBackground(){
+        return bg;
     }
 
     public static void onEquipDone(DragEvent event) {
@@ -92,6 +100,4 @@ public class AllCustomHandler {
         Select.setAllEquipments(allEquipments);
         Select.refreshPane();
     }
-
-
 }

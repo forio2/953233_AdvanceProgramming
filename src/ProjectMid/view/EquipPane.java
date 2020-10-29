@@ -33,7 +33,7 @@ public class EquipPane extends ScrollPane {
         equipmentInfoPane.setBorder(null);
         ((VBox) equipmentInfoPane).setAlignment(Pos.CENTER);
         equipmentInfoPane.setPadding(new Insets(50, 50, 50, 50));
-        Label  armorLbl;
+        Label armorLbl;
 
         StackPane armorImgGroup = new StackPane();
 
@@ -47,11 +47,11 @@ public class EquipPane extends ScrollPane {
 
 
         if (equippedlistCharacter != null) {
-            armorLbl = new Label("listCharacter: \n" + equippedlistCharacter.getName());
+            armorLbl = new Label("Background: \n" + equippedlistCharacter.getName());
             armorImg.setImage(new Image(getClass().getClassLoader().getResource(equippedlistCharacter.getImagepath()).toString()));
             armorImgGroup.getChildren().add(armorImg);
         } else {
-            armorLbl = new Label("listCharacter:");
+            armorLbl = new Label("Background:");
             armorImg.setImage(new Image(getClass().getClassLoader().getResource("ProjectMid/assets/blank.png").toString()));
         }
         armorImgGroup.setOnDragOver(e -> onDragOver(e, "listCharacter"));
