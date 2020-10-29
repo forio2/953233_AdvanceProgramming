@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +14,6 @@ import java.time.LocalDateTime;
 public class TopPane extends FlowPane {
     private Button add;
 
-    private Label update;
     public TopPane() {
         this.setPadding(new Insets(10)); this.setHgap(10);
         this.setPrefSize(640,20);

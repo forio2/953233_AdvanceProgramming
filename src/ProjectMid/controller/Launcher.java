@@ -1,15 +1,10 @@
 package ProjectMid.controller;
 
-import Chapter2.view.CurrencyParentPane;
-import Chapter2.view.TopPane;
 import ProjectMid.model.DrawingLoop;
 import ProjectMid.view.Platform;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
-import java.util.concurrent.ExecutionException;
 
 public class Launcher extends Application {
     public static void main(String[] args) { launch(args); }
