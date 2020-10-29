@@ -22,7 +22,6 @@ public class RefreshTask extends Task<Void> {
                 @Override
                 public void run() {
                     try {
-
                         }
                     catch (Exception e) {
                         e.printStackTrace();

@@ -176,7 +176,6 @@ public class Character extends Pane {
     }
 
     public void trace() {
-
         logger.info("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
     }
 
