@@ -19,25 +19,34 @@ public class Platform extends Pane {
     private ArrayList<Character> characterList;
     private Keys keys;
     private static TopPane topPane;
+    private ArrayList<HealthPower> healthPowerList;
     protected AllCustomHandler background;
+
 
     public Platform() {
         characterList = new ArrayList<>();
         keys = new Keys();
         topPane = new TopPane();
+        healthPowerList = new ArrayList<>();
         background = new AllCustomHandler();
-        System.out.println(background.getBackground());
-        platformImg = new Image(getClass().getResourceAsStream(background.getBackground()));
+        platformImg = new Image(background.getBackground());
         ImageView backgroundImg = new ImageView(platformImg);
         backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
         characterList.add(new Character(30, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/MarioSheet.png", 16, 32, 'A'));
         characterList.add(new Character(Platform.WIDTH, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/wood.png", 64, 64, 'B'));
+        healthPowerList.add(new HealthPower(30,GROUND+30));
         getChildren().addAll(backgroundImg, topPane);
         getChildren().addAll(characterList);
+        getChildren().addAll(healthPowerList);
+        System.out.println(background.getBackground());
     }
     public ArrayList<Character> getCharacterList() {
         return characterList;
+    }
+
+    public ArrayList<HealthPower> getScoreList() {
+        return healthPowerList;
     }
 
     public Keys getKeys() { return keys; }

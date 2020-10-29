@@ -1,16 +1,15 @@
 package ProjectMid.model;
 
-
-import Chapter1.model.Item.BasedEquipment;
 import ProjectMid.view.EquipPane;
 import ProjectMid.view.InventoryPane;
 import ProjectMid.Item.BasedCharacter;
 import ProjectMid.Item.listCharacter;
 import ProjectMid.controller.GenItemList;
+import ProjectMid.view.Platform;
 import ProjectMid.view.TopPane;
-import javafx.animation.TranslateTransition;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
@@ -30,7 +29,7 @@ public class Select extends SubScene {
     private static EquipPane equipPane = null;
     private static InventoryPane inventoryPane = null;
     public Select(){
-        super(new Pane(), 0, 0);
+        super(new AnchorPane(), 1000, 0);
         primaryStage.setTitle("Intro to RPG");
         primaryStage.setResizable(false);
         allEquipments = GenItemList.setUpIList();
@@ -63,10 +62,6 @@ public class Select extends SubScene {
 
     public static void setAllEquipments(ArrayList<BasedCharacter> allEquipments) {
         Select.allEquipments = allEquipments;
-    }
-
-    public static BasedCharacter getMainCharacter() {
-        return mainCharacter;
     }
 
     public static ArrayList<BasedCharacter> getBasedCharacter() {

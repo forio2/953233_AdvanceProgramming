@@ -11,6 +11,7 @@ import java.util.Random;
 public class Character extends Pane {
     public static final int CHARACTER_WIDTH = 32;
     public static final int CHARACTER_HEIGHT = 64;
+    private int hp = 20;
     private Image characterImg;
     private AnimatedSprite imageView;
     private int x;
@@ -110,12 +111,14 @@ public class Character extends Pane {
 
     public void collided(Character c) {
         if (isMoveLeft) {
+            hp--;
             stop();
         }
         else if (isMoveRight) {
             if(selectPlayer == 'A'){
                 x = c.getX() - CHARACTER_WIDTH + 1;
             }
+            hp--;
             stop();
         }
     }
@@ -187,5 +190,13 @@ public class Character extends Pane {
 
     public char getSelectPlayer(){
         return selectPlayer;
+    }
+
+    public int getHp() {
+        if (hp < 0){
+            hp = 0;
+            System.exit(0);
+        }
+        return hp;
     }
 }

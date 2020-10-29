@@ -1,6 +1,7 @@
 package ProjectMid.controller;
 import ProjectMid.model.Character;
 import ProjectMid.view.Platform;
+import ProjectMid.view.HealthPower;
 
 import java.util.ArrayList;
 
@@ -42,11 +43,22 @@ public class GameLoop implements Runnable {
             }
         }
     }
+
+    private void updateScore(ArrayList<HealthPower> healthPowerList, ArrayList<Character>
+            characterList) {
+        javafx.application.Platform.runLater(() -> {
+            for (int i = 0; i< healthPowerList.size() ; i++) {
+                healthPowerList.get(i).setPoint(characterList.get(i).getHp());
+            }
+        });
+    }
+
     @Override
     public void run() {
         while (running) {
             float time = System.currentTimeMillis();
             update(platform.getCharacterList());
+            updateScore(platform.getScoreList(),platform.getCharacterList());
             time = System.currentTimeMillis() - time;
             if (time < interval) {
                 try {

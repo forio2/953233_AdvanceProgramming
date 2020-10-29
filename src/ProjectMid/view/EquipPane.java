@@ -60,7 +60,11 @@ public class EquipPane extends ScrollPane {
         Button unequip = new Button();
         unequip.setText("unequip");
         unequip.setOnAction(new AllCustomHandler.Unequip());
-        equipmentInfoPane.getChildren().addAll(  armorLbl, armorImgGroup,unequip );
+
+        Button go = new Button();
+        go.setText("GO");
+        go.setOnAction(new AllCustomHandler.go());
+        equipmentInfoPane.getChildren().addAll(  armorLbl, armorImgGroup,unequip, go);
         return equipmentInfoPane;
     }
 

@@ -1,11 +1,9 @@
 package ProjectMid.controller;
 
-import Chapter1.controller.Launcher;
-import Chapter1.model.Item.Armor;
-import Chapter1.model.Item.Weapon;
 import ProjectMid.Item.BasedCharacter;
 import ProjectMid.Item.listCharacter;
 import ProjectMid.model.Select;
+import ProjectMid.view.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -13,25 +11,40 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Popup;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 
 public class AllCustomHandler {
     public static String bg = "/ProjectMid/assets/Background.png";
     static boolean dragCompleted;
+    int count=0;
 
     public static class Unequip implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            BasedCharacter equip = Select.getMainCharacter();
             if (Select.getEquippedArmor() != null) {
                 Select.setEquippedArmor(null);
                 Select.setAllEquipments(GenItemList.setUpIList());
             }
             Select.refreshPane();
         }
+    }
+    public static class go implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            new Platform();
+        }
+    }
+
+    public int getCount(){
+        return this.count;
+    }
+
+    public void setCount(int count){
+        this.count = count;
     }
     public static void onDragDetected(MouseEvent event, BasedCharacter equipment, ImageView imgView) {
         Dragboard db = imgView.startDragAndDrop(TransferMode.ANY);
@@ -62,6 +75,7 @@ public class AllCustomHandler {
                     allEquipments.add(Select.getEquippedArmor());
                 }
                 Select.setEquippedArmor((listCharacter) retrievedEquipment);
+                bg = retrievedEquipment.getUrl();
 
             }
             Select.setAllEquipments(allEquipments);
