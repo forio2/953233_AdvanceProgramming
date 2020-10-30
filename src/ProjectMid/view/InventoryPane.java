@@ -48,6 +48,3 @@ public class InventoryPane extends ScrollPane {
         this.setContent(inventoryInfo);
     }
 }
-
-
-

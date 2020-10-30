@@ -33,7 +33,7 @@ public class Platform extends Pane {
         ImageView backgroundImg = new ImageView(platformImg);
         backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
-        characterList.add(new Character(30, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/MarioSheet.png", 16, 32, 'A'));
+        characterList.add(new Character(30, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/dinosaur.png", 70, 70, 'A'));
         characterList.add(new Character(Platform.WIDTH, 30,0,0, KeyCode.A,KeyCode.D,KeyCode.W, "/ProjectMid/assets/wood.png", 64, 64, 'B'));
         healthPowerList.add(new HealthPower(30,GROUND+30));
         getChildren().addAll(backgroundImg, topPane);

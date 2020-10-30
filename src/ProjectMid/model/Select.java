@@ -45,7 +45,6 @@ public class Select extends SubScene {
         inventoryPane = new InventoryPane();
         mainPane.setLeft(equipPane);
         mainPane.setCenter(inventoryPane);
-        mainPane.setBottom(topPane);
         refreshPane();
         return mainPane;
     }
