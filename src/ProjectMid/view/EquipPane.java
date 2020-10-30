@@ -3,8 +3,12 @@ package ProjectMid.view;
 
 import ProjectMid.controller.AllCustomHandler;
 import ProjectMid.Item.listCharacter;
+import ProjectMid.controller.GameLoop;
+import ProjectMid.controller.Launcher;
+import ProjectMid.model.DrawingLoop;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -63,7 +67,24 @@ public class EquipPane extends ScrollPane {
 
         Button go = new Button();
         go.setText("GO");
-        go.setOnAction(new AllCustomHandler.go());
+        go.setOnAction(event -> {
+            try {
+                Platform platform = new Platform();
+                GameLoop gameLoop = new GameLoop(platform);
+                DrawingLoop drawingLoop = new DrawingLoop(platform);
+                Launcher.getStage().setScene(new Scene(platform, platform.WIDTH, platform.HEIGHT));
+                Launcher.getStage().getScene().setOnKeyPressed(ev-> platform.getKeys().add(ev.getCode()));
+                Launcher.getStage().getScene().setOnKeyReleased(ev -> platform.getKeys().remove(ev.getCode()));
+
+                Launcher.getStage().setTitle("platformer");
+                Launcher.getStage().setScene(Launcher.getStage().getScene());
+                Launcher.getStage().show();
+                (new Thread(gameLoop)).start();
+                (new Thread(drawingLoop)).start();
+            }catch (NullPointerException|IllegalArgumentException e){
+                e.printStackTrace();
+            }
+        });
 
         Button sort = new Button();
         sort.setText("SORT");

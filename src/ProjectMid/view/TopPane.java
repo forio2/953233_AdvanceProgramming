@@ -15,7 +15,8 @@ public class TopPane extends FlowPane {
     private Button add;
 
     public TopPane() {
-        this.setPadding(new Insets(10)); this.setHgap(10);
+        this.setPadding(new Insets(10));
+        this.setHgap(10);
         this.setPrefSize(640,20);
         add = new Button("Add");
         add.setOnAction(event -> AllEventHandlers.onAdd());

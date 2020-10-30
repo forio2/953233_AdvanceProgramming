@@ -29,13 +29,17 @@ public class InventoryPane extends ScrollPane {
         inventoryInfoPane.setPadding(new Insets(10, 10, 10, 10));
         if (equipmentArray != null) {
             ImageView[] imageViewList = new ImageView[equipmentArray.size()];
-            for (int i = 0; i < equipmentArray.size(); i++) {
-                imageViewList[i] = new ImageView();
-                imageViewList[i].setImage(new Image(getClass().getClassLoader().
-                        getResource(equipmentArray.get(i).getImagepath()).toString()));
-                int finalI = i;
-                imageViewList[i].setOnDragDetected(event -> onDragDetected(event, equipmentArray.get(finalI), imageViewList[finalI]));
-                imageViewList[i].setOnDragDone(event -> onEquipDone(event));
+            try {
+                for (int i = 0; i < equipmentArray.size(); i++) {
+                    imageViewList[i] = new ImageView();
+                    imageViewList[i].setImage(new Image(getClass().getClassLoader().
+                            getResource(equipmentArray.get(i).getImagepath()).toString()));
+                    int finalI = i;
+                    imageViewList[i].setOnDragDetected(event -> onDragDetected(event, equipmentArray.get(finalI), imageViewList[finalI]));
+                    imageViewList[i].setOnDragDone(event -> onEquipDone(event));
+                }
+            }catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
             }
             inventoryInfoPane.getChildren().addAll(imageViewList);
         }

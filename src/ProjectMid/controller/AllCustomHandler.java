@@ -37,12 +37,6 @@ public class AllCustomHandler {
             Select.refreshPane();
         }
     }
-    public static class go implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-            new Platform();
-        }
-    }
 
     public static class sort implements EventHandler<ActionEvent> {
         @Override
@@ -89,7 +83,7 @@ public class AllCustomHandler {
                     allEquipments.add(Select.getEquippedArmor());
                 }
                 Select.setEquippedArmor((listCharacter) retrievedEquipment);
-                bg = retrievedEquipment.getUrl();
+                setBackground(retrievedEquipment.getUrl());
 
             }
             Select.setAllEquipments(allEquipments);
@@ -109,6 +103,10 @@ public class AllCustomHandler {
 
     public String getBackground(){
         return bg;
+    }
+
+    public static void setBackground(String background){
+        bg = background;
     }
 
     public static void onEquipDone(DragEvent event) {

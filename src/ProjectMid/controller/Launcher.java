@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Launcher extends Application {
+    private static Stage stage;
     public static void main(String[] args) { launch(args); }
     @Override
     public void start(Stage primaryStage) {
+        stage=primaryStage;
         Platform platform = new Platform();
         GameLoop gameLoop = new GameLoop(platform);
         DrawingLoop drawingLoop = new DrawingLoop(platform);
@@ -23,5 +25,8 @@ public class Launcher extends Application {
         (new Thread(gameLoop)).start();
         (new Thread(drawingLoop)).start();
 
+    }
+    public static Stage getStage(){
+        return  stage;
     }
 }
