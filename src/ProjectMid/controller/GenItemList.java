@@ -12,8 +12,8 @@ public class GenItemList {
     public static ArrayList<BasedCharacter> setUpIList() {
         ArrayList<BasedCharacter> itemLists = new ArrayList<BasedCharacter>();
         itemLists.add(new listCharacter("Day", "/ProjectMid/assets/Background.png",  "ProjectMid/assets/super-mario.png"));
-        itemLists.add(new listCharacter("Era", "/ProjectMid/assets/era.png",  "ProjectMid/assets/sun.png"));
-        itemLists.add(new listCharacter("Era2", "/ProjectMid/assets/era2.png",  "ProjectMid/assets/forest.png"));
+        itemLists.add(new listCharacter("Era2", "/ProjectMid/assets/era.png",  "ProjectMid/assets/forest.png"));
+        itemLists.add(new listCharacter("Era", "/ProjectMid/assets/era2.png",  "ProjectMid/assets/sun.png"));
 
         return itemLists;
     }

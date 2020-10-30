@@ -11,7 +11,7 @@ public class Launcher extends Application {
     public static void main(String[] args) { launch(args); }
     @Override
     public void start(Stage primaryStage) {
-        stage=primaryStage;
+        stage = primaryStage;
         Platform platform = new Platform();
         GameLoop gameLoop = new GameLoop(platform);
         DrawingLoop drawingLoop = new DrawingLoop(platform);
