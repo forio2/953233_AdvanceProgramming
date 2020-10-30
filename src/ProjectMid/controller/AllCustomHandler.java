@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.toMap;
 
 
 public class AllCustomHandler {
-    public static String bg = "/ProjectMid/assets/Background.png";
+    public static String bg = "/ProjectMid/assets/era2.png";
     static boolean dragCompleted;
     protected static GenItemList itemLists;
 
