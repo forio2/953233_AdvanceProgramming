@@ -11,16 +11,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.StackPane;
+import org.apache.pdfbox.text.PDFTextStripper;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
 
 
 public class AllCustomHandler {
     public static String bg = "/ProjectMid/assets/Background.png";
     static boolean dragCompleted;
-    int count=0;
+    protected static GenItemList itemLists;
 
     public static class Unequip implements EventHandler<ActionEvent> {
         @Override
@@ -39,12 +44,21 @@ public class AllCustomHandler {
         }
     }
 
-    public int getCount(){
-        return this.count;
-    }
-
-    public void setCount(int count){
-        this.count = count;
+    public static class sort implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            ArrayList<BasedCharacter> itemlistArr  = itemLists.setUpIList();
+            System.out.println(itemlistArr);
+            Object[] arr=  itemlistArr.stream().sorted((o1, o2) -> o1.getName().compareTo(o2.getName())).toArray();
+            itemlistArr.clear();
+            for (int i=0;i<arr.length;i++){
+                itemlistArr.add((BasedCharacter) arr[i]);
+            }
+            System.out.println(itemlistArr);
+            Select.setEquippedArmor(null);
+            Select.setAllEquipments(itemlistArr);
+            Select.refreshPane();
+        }
     }
     public static void onDragDetected(MouseEvent event, BasedCharacter equipment, ImageView imgView) {
         Dragboard db = imgView.startDragAndDrop(TransferMode.ANY);
