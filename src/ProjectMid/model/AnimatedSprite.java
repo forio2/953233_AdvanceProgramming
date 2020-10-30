@@ -18,15 +18,4 @@ public class AnimatedSprite extends ImageView {
         this.height = height;
         this.setViewport(new Rectangle2D(offsetX, offsetY, width, height));
     }
-    public void tick() {
-        curColumnIndex = curIndex % columns;
-        curRowIndex = curIndex / columns;
-        curIndex = (curIndex+1) % (columns * rows);
-        interpolate();
-    }
-    protected void interpolate() {
-        final int x = curColumnIndex * width + offsetX;
-        final int y = curRowIndex * height + offsetY;
-        this.setViewport(new Rectangle2D(x, y, width, height));
-    }
 }
