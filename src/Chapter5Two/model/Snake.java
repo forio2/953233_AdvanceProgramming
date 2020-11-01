@@ -1,5 +1,6 @@
 package Chapter5Two.model;
 
+import Chapter5Two.controller.GameLoop;
 import Chapter5Two.view.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Alert;
@@ -12,6 +13,7 @@ public class Snake {
     private Point2D head;
     private Point2D prev_tail;
     private ArrayList<Point2D> body;
+    private int score = 0;
 
     public Snake(Point2D position) {
         direction = Direction.DOWN;
@@ -28,7 +30,18 @@ public class Snake {
         this.direction = direction;
     }
     public void grow() {
-        body.add(prev_tail);
+        if(GameLoop.answer == 1){
+            body.add(prev_tail);
+            body.add(prev_tail);
+            body.add(prev_tail);
+            body.add(prev_tail);
+            body.add(prev_tail);
+            this.score = this.score + 5;
+
+        }else{
+            body.add(prev_tail);
+            this.score++;
+        }
     }
 
     public Direction getCurrentDirection() {
@@ -57,4 +70,9 @@ public class Snake {
         boolean isHitBody = body.lastIndexOf(head) > 0;
         return isOutOfBound || isHitBody;
     }
+
+    public int getScore() {
+        return score;
+    }
+
 }

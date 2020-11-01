@@ -44,7 +44,7 @@ public class AllEventHandlers {
             }catch (MalformedURLException e){
                 System.out.println("Encountered a Malformed Url exception");
             }catch (IOException e){
-                System.out.println("Encounter an IO exception");
+                System.out.println("Encounter an IO exception") ;
             }
 
             JSONObject jsonOBJ = new JSONObject(retrievedJson);

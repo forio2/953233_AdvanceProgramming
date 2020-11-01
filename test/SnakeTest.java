@@ -1,5 +1,6 @@
 package test;
 
+import Chapter5Two.controller.GameLoop;
 import Chapter5Two.model.Direction;
 import Chapter5Two.model.Food;
 import Chapter5Two.model.Snake;
@@ -45,7 +46,7 @@ public class SnakeTest {
     @Test
     public void snakeGrowthShouldAddItsLengthByOne() {
         snake.grow();
-        assertEquals(snake.getLength(),2);
+        assertEquals(snake.getLength(),6);
     }
     @Test
     public void bodyOfGrownSnakeShouldContainPreviousHead() {

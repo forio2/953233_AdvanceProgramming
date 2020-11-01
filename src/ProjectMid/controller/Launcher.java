@@ -24,7 +24,6 @@ public class Launcher extends Application {
         primaryStage.show();
         (new Thread(gameLoop)).start();
         (new Thread(drawingLoop)).start();
-
     }
     public static Stage getStage(){
         return  stage;
