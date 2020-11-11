@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 import view.Platform;
 
 public class Character extends Pane {
-
-    Logger logger = LoggerFactory.getLogger(Character.class);
-
+    Logger logger = LoggerFactory.getLogger(Character.class.getName());
     public static final int CHARACTER_WIDTH = 70;
     public static final int CHARACTER_HEIGHT = 64;
 
@@ -21,6 +19,8 @@ public class Character extends Pane {
 
     private int x;
     private int y;
+    private int offsetX;
+    private int offsetY;
 
     private KeyCode leftKey;
     private KeyCode rightKey;
@@ -43,6 +43,8 @@ public class Character extends Pane {
 
         this.x = x;
         this.y = y;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
         this.setTranslateX(x);
         this.setTranslateY(y);
         this.characterImg = new Image(getClass().getResourceAsStream("/assets/sprite_sheet.png"));
@@ -54,6 +56,22 @@ public class Character extends Pane {
         this.upKey = upKey;
         this.ultiKey = ultiKey;
         this.getChildren().addAll(this.imageView);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public double getOffsetX() {
+        return offsetX;
+    }
+
+    public double getOffsetY() {
+        return offsetY;
     }
 
     public void moveLeft() {
@@ -69,6 +87,15 @@ public class Character extends Pane {
         isMoveLeft = false;
         isMoveRight = false;
         xVelocity = 0;
+    }
+
+    public void dive() {
+        if (canJump) {
+            yVelocity = 7;
+            canJump = false;
+            jumping = true;
+            falling = false;
+        }
     }
 
     public void jump() {
@@ -136,7 +163,7 @@ public class Character extends Pane {
     }
 
     public void trace() {
-        logger.debug("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
+        logger.info("x:{} y:{} vx:{} vy:{}",x,y,xVelocity,yVelocity);
     }
 
     public KeyCode getLeftKey() {

@@ -22,14 +22,12 @@ public class AnimatedSprite extends ImageView{
     public void tick() {
         curXIndex = (curXIndex+1)%columns;
         curYIndex = (curYIndex+1)/columns;
-        System.out.println("first");
         interpolate();
     }
 
     public void jump() {
         curXIndex = (curXIndex+1)%columns;
         curYIndex = (curYIndex+1)/columns;
-        System.out.println("second");
         interpolate2();
     }
 
@@ -43,14 +41,12 @@ public class AnimatedSprite extends ImageView{
     protected void interpolate() {
         final int x = curXIndex*width+offsetX;
         final int y = curYIndex*height+offsetY;
-        System.out.println("test: " + x + "and" + y );
         this.setViewport(new Rectangle2D(x, y, width, height));
     }
 
     protected void interpolate2() {
         final int x = curXIndex*width+offsetX;
         final int y = curYIndex*height+offsetY+63;
-        System.out.println("test: " + x + "and" + y );
         this.setViewport(new Rectangle2D(x, y, width, height));
     }
 

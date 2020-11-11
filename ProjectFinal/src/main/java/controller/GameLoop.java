@@ -25,11 +25,14 @@ public class GameLoop implements Runnable {
 
         for (Character character : characterList ) {
             if (platform.getKeys().isPressed(character.getLeftKey()) || platform.getKeys().isPressed(character.getRightKey())) {
-                if (platform.getKeys().isPressed(character.getUtilKey())) {
-                    character.getImageView().dive();
-                    break;
-                }
                 character.getImageView().tick();
+                character.trace();
+            }
+
+            if (platform.getKeys().isPressed(character.getUtilKey())) {
+                character.dive();
+                character.getImageView().dive();
+                break;
             }
 
             if (platform.getKeys().isPressed(character.getUpKey())) {

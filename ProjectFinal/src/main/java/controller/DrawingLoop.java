@@ -14,7 +14,7 @@ public class DrawingLoop implements Runnable {
 
     public DrawingLoop(Platform platform) {
         this.platform = platform;
-        frameRate = 60;
+        frameRate = 30;
         interval = 1000.0f / frameRate; // 1000 ms = 1 second
         running = true;
     }
